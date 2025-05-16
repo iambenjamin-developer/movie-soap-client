@@ -59,3 +59,10 @@ router.delete('/:id', async (req, res) => {
 router.post('/upsert', async (req, res) => {
     try {
         const result = await movieService.upsertMovie(req.body);
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+module.exports = router;
