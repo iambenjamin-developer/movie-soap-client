@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "7ae7edcf-51ec-4a86-ab24-3660aac0208c",
+		"name": "U7D PRE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20367807"
+	},
+	"item": [
+		{
+			"name": "GET ASSET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "\"http://VodAPIWS/xsd/getAsset\"",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "{{credentials_cookie_pre}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <getAsset xmlns=\"http://VodAPIWS/xsd\">\r\n            <assetIdentifier>\r\n                <externalId>MDE129200573</externalId>\r\n                <contentProvider>\r\n                    <externalId>CU</externalId>\r\n                    <name>CU</name>\r\n                </contentProvider>\r\n            </assetIdentifier>\r\n        </getAsset>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83/getAsset",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"VodAPIWS83",
+						"getAsset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH ASSET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://VodAPIWS/xsd/searchAssets",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "{{credentials_cookie_pre}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <searchAssets xmlns=\"http://VodAPIWS/xsd\">\r\n            <criteria>&lt;search&gt;&lt;root-folder&gt;&lt;folder-identifier path=\"/CUTV\" /&gt;&lt;/root-folder&gt;&lt;sorting&gt;&lt;sorting-field entity=\"asset\" field=\"name\" order=\"Asc\" /&gt;&lt;/sorting&gt;&lt;/search&gt;</criteria>\r\n            <options>\r\n                <name>calculateMediaFileStatuses</name>\r\n                <value>true</value>\r\n            </options>\r\n            <options>\r\n                <name>count</name>\r\n                <value>501</value>\r\n            </options>\r\n        </searchAssets>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83/searchAssets",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"VodAPIWS83",
+						"searchAssets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ASSET MEDIA FILE LIST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "soapaction",
+						"value": "http://VodAPIWS/xsd/getAssetMediaFileList",
+						"type": "text"
+					},
+					{
+						"key": "cookie",
+						"value": "{{credentials_cookie_pre}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n               xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \r\n               xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <getAssetMediaFileList xmlns=\"http://VodAPIWS/xsd\">\r\n            <assetIdentifier>\r\n                <externalId>MDE129200573</externalId>\r\n                <contentProvider>\r\n                    <externalId>CU</externalId>\r\n                    <name>CU</name>\r\n                </contentProvider>\r\n            </assetIdentifier>\r\n        </getAssetMediaFileList>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83/getAssetMediaFileList",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"VodAPIWS83",
+						"getAssetMediaFileList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE ASSET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "soapaction",
+						"value": "http://VodAPIWS/xsd/createAsset",
+						"type": "text"
+					},
+					{
+						"key": "cookie",
+						"value": "{{credentials_cookie_pre}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <createAsset xmlns=\"http://VodAPIWS/xsd\">\r\n            <folder>\r\n                <path>/CUTV</path>\r\n            </folder>\r\n            <asset>\r\n                <externalId>MDE129200573</externalId>\r\n                <contentProvider>\r\n                    <externalId>CU</externalId>\r\n                    <name>CU</name>\r\n                </contentProvider>\r\n                <name>Adivina quién</name>\r\n                <shortName>Adivina quién</shortName>\r\n                <description>Cuando Theresa dijo a sus padres que iba a aprovechar la cena de celebración de sus bodas de plata para presentarles a su prometido, se le olvidó mencionar un pequeño detalle. Su prometido es blanco. Decidido a romper el compromiso de su hija, Percy hará todo lo que está en su mano para que Simon se sienta ajeno a la familia. Casi cuatro décadas después de que Katharine Houghton llevase a casa al afroamericano Sidney Poitier para presentárselo a sus sorprendidísimos y blanquísimos padres, se estrenó esta comedia cuya principal diferencia con el clásico de Stanley Kramer es el color de piel de los protagonistas. En esta ocasión, es Ashton Kutcher quien tiene que convencer al mítico Bernie Mac de que es un buen novio para su hija. La cinta alcanzó una gran popularidad gracias al enorme número de seguidoras de su atractivo protagonista, Ashton Kutcher</description>\r\n                <shortDescription>Theresa, una joven negra, aprovecha las bodas de plata de sus padres para presentarles a su novio. Lo que no les había contado es que es blanco.</shortDescription>\r\n                <deletionDate>2025-05-24T10:14:00.0-03:00</deletionDate>\r\n                <year>2005</year>\r\n                <licenseStartDate>2025-05-10T10:14:00.0-03:00</licenseStartDate>\r\n                <licenseEndDate>2025-05-24T10:14:00.0-03:00</licenseEndDate>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Ashton</firstName>\r\n                    <lastName>Kutcher</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Bernie</firstName>\r\n                    <lastName>Mac</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Kellee</firstName>\r\n                    <lastName>Stewart</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Judith</firstName>\r\n                    <lastName>Scott</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Hal</firstName>\r\n                    <lastName>Williams</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>ACTOR</role>\r\n                    <firstName>Zoe</firstName>\r\n                    <lastName>Saldaña</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>DIRECTOR</role>\r\n                    <firstName>Kevin Rodney</firstName>\r\n                    <lastName>Sullivan</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>PRODUCER</role>\r\n                    <firstName>Erwin</firstName>\r\n                    <lastName>Stoff</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>PRODUCER</role>\r\n                    <firstName>Jason</firstName>\r\n                    <lastName>Goldberg</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>PRODUCER</role>\r\n                    <firstName>Jenno</firstName>\r\n                    <lastName>Topping</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>WRI</role>\r\n                    <firstName>David</firstName>\r\n                    <lastName>Ronn</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>WRI</role>\r\n                    <firstName>Jay</firstName>\r\n                    <lastName>Scherick</lastName>\r\n                </contributors>\r\n                <contributors>\r\n                    <role>WRI</role>\r\n                    <firstName>Peter</firstName>\r\n                    <lastName>Tolan</lastName>\r\n                </contributors>\r\n                <parentalRatingLevel>\r\n                    <level>20</level>\r\n                    <name>7</name>\r\n                </parentalRatingLevel>\r\n                <externalChannelId>selekt</externalChannelId>\r\n                <broadcastTime>2025-05-10T10:16:00.0-03:00</broadcastTime>\r\n                <genres>\r\n                    <name>Comedia</name>\r\n                    <externalId>Cine/Comedia</externalId>\r\n                    <parentName>Cine</parentName>\r\n                </genres>\r\n                <extrafields>\r\n                    <name>ProgramID</name>\r\n                    <value>none</value>\r\n                </extrafields>\r\n                <extrafields>\r\n                    <name>ChannelId</name>\r\n                    <value>none</value>\r\n                </extrafields>\r\n                <extrafields>\r\n                    <name>ProgramDuration</name>\r\n                    <value>PT1H47M0S</value>\r\n                </extrafields>\r\n                <extrafields>\r\n                    <name>ContentId</name>\r\n                    <value>MDP129050</value>\r\n                </extrafields>\r\n                <imageAttachments>\r\n                    <name>EPG_T</name>\r\n                    <url>/attachments/EPG_T_7f1b2c2353675f2e18031a9e2ec85a74dd49939e.jpeg</url>\r\n                </imageAttachments>\r\n                <allowedTerminalCategories>\r\n                    <name>Set-top box</name>\r\n                    <externalId>Set-top box</externalId>\r\n                </allowedTerminalCategories>\r\n                <allowedTerminalCategories>\r\n                    <name>PC</name>\r\n                    <externalId>PC</externalId>\r\n                </allowedTerminalCategories>\r\n                <allowedTerminalCategories>\r\n                    <name>Smartphone</name>\r\n                    <externalId>Smartphone</externalId>\r\n                </allowedTerminalCategories>\r\n                <allowedTerminalCategories>\r\n                    <name>Tablet</name>\r\n                    <externalId>Tablet</externalId>\r\n                </allowedTerminalCategories>\r\n                <allowedTerminalCategories>\r\n                    <name>Connected-TV</name>\r\n                    <externalId>Connected-TV</externalId>\r\n                </allowedTerminalCategories>\r\n            </asset>\r\n        </createAsset>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83/createAsset",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"VodAPIWS83",
+						"createAsset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE IMAGE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "soapaction",
+						"value": "http://CommonAPIWS/xsd/createImage",
+						"type": "text"
+					},
+					{
+						"key": "cookie",
+						"value": "credentials=sKliuru5EdO4spmqUmFJaXf5dplUkTW7oQIXiLPbztk_#_7tzd_9M1z1u4kMJrm7uhaw",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><createImage xmlns=\"http://CommonAPIWS/xsd\"><path>/attachments/</path><filename>perrorejudo.jpeg</filename><data>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\r\n</data><options><name>replace_existing_image</name><value>true</value></options></createImage></soap:Body></soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/CommonAPIWS83/createImage",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"CommonAPIWS83",
+						"createImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE ASSET",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "text/xml; charset=UTF-8",
+						"type": "text"
+					},
+					{
+						"key": "soapaction",
+						"value": "http://VodAPIWS/xsd/deleteAsset",
+						"type": "text"
+					},
+					{
+						"key": "cookie",
+						"value": "credentials=sKliuru5EdO4spmqUmFJaXf5dplUkTW7oQIXiLPbztk_#_HdsDp8MGjtXKfHigEnanTw",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/application.html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope \r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \r\n    xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \r\n    xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n    <soap:Body>\r\n        <deleteAsset xmlns=\"http://VodAPIWS/xsd\">\r\n            <assetIdentifier>\r\n                <externalId>MDE129200573</externalId>\r\n                <contentProvider>\r\n                    <externalId>CU</externalId>\r\n                    <name>CU</name>\r\n                </contentProvider>\r\n            </assetIdentifier>\r\n        </deleteAsset>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83/deleteAsset",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"RightvAPIWS",
+						"services",
+						"VodAPIWS83",
+						"deleteAsset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Extrae la cookie de la respuesta\r",
+							"const cookie = pm.response.headers.get('Set-Cookie');\r",
+							"const credentialsValue = cookie.match(/credentials=([^;]+)/)[1];\r",
+							"\r",
+							"// Guarda el valor en una variable de entorno\r",
+							"pm.environment.set(\"credentials_cookie_pre\", credentialsValue);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cache-control",
+						"value": "no-cache",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.250.10.206:8082/client/index.html",
+						"type": "text"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"alejandro.n@smartwaystudio.com\",\r\n    \"password\": \"aaaa1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.250.10.206:8082/ums/rest/v13/Management/login",
+					"protocol": "http",
+					"host": [
+						"10",
+						"250",
+						"10",
+						"206"
+					],
+					"port": "8082",
+					"path": [
+						"ums",
+						"rest",
+						"v13",
+						"Management",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
