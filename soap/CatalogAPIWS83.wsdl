@@ -1,0 +1,2969 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://CatalogAPIWS/"
+    xmlns:ax21="http://exceptions.common.orca.com/xsd"
+    xmlns:ax24="http://entities.core.v83.interfaces.rightv.orca.com/xsd"
+    xmlns:ax25="http://entities.common.v83.interfaces.rightv.orca.com/xsd"
+    xmlns:ax29="http://core.enums.common.orca.com/xsd"
+    xmlns:axis2="http://CatalogAPIWS/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:ns="http://CatalogAPIWS/xsd"
+    xmlns:ns1="http://org.apache.axis2/xsd"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://entities.core.v83.interfaces.rightv.orca.com/xsd"
+            xmlns:ax210="http://core.enums.common.orca.com/xsd" xmlns:ax26="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:import namespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:import namespace="http://core.enums.common.orca.com/xsd"/>
+            <xs:complexType name="IPageIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDiscountIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDiscount">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="discountType"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="imageAttachments" nillable="true" type="ax25:IImageAttachment"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="percentageOptions" nillable="true" type="ax24:IPercentageDiscountedOption"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="pricingOptions" nillable="true" type="ax24:IDiscountedPricingOption"/>
+                    <xs:element minOccurs="0" name="updateDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="validityTimePeriods" nillable="true" type="ax24:ITimeWindow"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPercentageDiscountedOption">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="percentage" type="xs:int"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDiscountedPricingOption">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="deliveryMode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="downloadPeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rentalPeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITimeWindow">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="endTime"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="startTime"
+                        nillable="true" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDiscountSearchCriteria">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="availabilityEndDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0"
+                        name="availabilityStartDate" nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price"
+                        nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="priceOperator"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDiscountReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="discountType" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="updateDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="validityTimePeriods" nillable="true" type="ax24:ITimeWindow"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IHistoryRecord">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="date"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="message"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPage">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="adsInfo"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="adsPostRoll" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="adsPreRoll" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="blockedBrowsing" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="definition"
+                        nillable="true" type="ax25:IContentDefinition"/>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="discountExternalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extraFields" nillable="true" type="ax25:IExtraField"/>
+                    <xs:element minOccurs="0" name="failureStatus" type="xs:int"/>
+                    <xs:element minOccurs="0" name="hidden" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="imageAttachments" nillable="true" type="ax25:IImageAttachment"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="inheritedServices" nillable="true" type="ax24:IAssociatedService"/>
+                    <xs:element minOccurs="0" name="isFolder" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="lastModified"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0"
+                        name="modificationsPublishingDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="modified" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="movieAsset"
+                        nillable="true" type="ax25:IAssetReference"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="movieAttachments" nillable="true" type="ax25:IMovieAttachment"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0"
+                        name="pendingPreOrdersCounter" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="plannedAnnouncementDate" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="plannedDeletionDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="plannedPublishDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="plannedRemovalDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="pricingMatrixName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="secured" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="securityApplication"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="securityGroups" nillable="true" type="ax24:ISecurityGroup"/>
+                    <xs:element minOccurs="0"
+                        name="simultaneousViewsLimit" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="status"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="templateName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="translated" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="tvShowReference"
+                        nillable="true" type="ax25:ITvShowReference"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vodPackage"
+                        nillable="true" type="ax24:IVodPackageDetails"/>
+                    <xs:element minOccurs="0"
+                        name="vodPackageMoviePeriod" nillable="true" type="ax25:ITimePeriod"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IAssociatedService">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="ancestorCategoryList" nillable="true" type="ax25:IPageReference"/>
+                    <xs:element minOccurs="0" name="service"
+                        nillable="true" type="ax25:IServiceReference"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ISecurityGroup">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVodPackageDetails">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="deliveryMode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="estPrice" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="moviePeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element minOccurs="0" name="packagePeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPricingMatrixCriteria">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="filterDefinition" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPricingMatrix">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="pricingOptions" nillable="true" type="ax24:IPricingOption"/>
+                    <xs:element minOccurs="0" name="updateDate"
+                        nillable="true" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPricingOption">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="allowedViews"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="contentDefinition"
+                        nillable="true" type="ax25:IContentDefinition"/>
+                    <xs:element minOccurs="0" name="downloadPeriod" type="xs:int"/>
+                    <xs:element minOccurs="0" name="downloadTimePeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="pricingOptionId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="rentalPeriod" type="xs:int"/>
+                    <xs:element minOccurs="0" name="rentalTimePeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITemplate">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="attachments" nillable="true" type="ax24:IAttachmentDefinition"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extrafields" nillable="true" type="ax25:IExtraFieldDefinition"/>
+                    <xs:element minOccurs="0" name="modificationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IAttachmentDefinition">
+                <xs:sequence>
+                    <xs:element minOccurs="0"
+                        name="defaultAssetReference" nillable="true" type="ax25:IAssetReference"/>
+                    <xs:element minOccurs="0" name="defaultImageUrl"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVodPackageReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="estPrice" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="modified" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pageId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="status"
+                        nillable="true" type="ax210:PageStatusEnum"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPosition">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="index"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="positioningMethod" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="relativePageExternalId" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITemplateIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://exceptions.common.orca.com/xsd" xmlns:ax22="http://CatalogAPIWS/xsd">
+            <xs:import namespace="http://CatalogAPIWS/xsd"/>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://CatalogAPIWS/xsd"
+            xmlns:ax23="http://exceptions.common.orca.com/xsd"
+            xmlns:ax27="http://entities.core.v83.interfaces.rightv.orca.com/xsd" xmlns:ax28="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:import namespace="http://exceptions.common.orca.com/xsd"/>
+            <xs:import namespace="http://entities.core.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:import namespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:element name="SystemException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="arg0"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg1"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg2"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg3"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="errorCode"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="message"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ApplicationException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="aPIFormated" type="xs:boolean"/>
+                        <xs:element minOccurs="0" name="arg0"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg1"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg2"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg3"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="errorCode"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="message"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPageList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="from" type="xs:int"/>
+                        <xs:element minOccurs="0" name="count" type="xs:int"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPageListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax25:IPageReference"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchPages">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="critria"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="from" type="xs:int"/>
+                        <xs:element minOccurs="0" name="count" type="xs:int"/>
+                        <xs:element minOccurs="0" name="distinct" type="xs:boolean"/>
+                        <xs:element minOccurs="0" name="includeDeleted" type="xs:boolean"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchPagesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax25:IPageReference"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getParentalRatingLevelList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getParentalRatingLevelListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax25:IParentalRatingLevel"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchVODCards">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="vodCardSearchCriteria" nillable="true" type="ax25:IVODCardSearchCriteria"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchVODCardsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax25:IVODCard"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="discountIdentifier" nillable="true" type="ax24:IDiscountIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="ax24:IDiscount"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchDiscounts">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="discountCriteria" nillable="true" type="ax24:IDiscountSearchCriteria"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchDiscountsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IDiscountReference"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPageHistory">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPageHistoryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IHistoryRecord"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getModifiedPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getModifiedPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="ax24:IPage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="ax24:IPage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getParentPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="childPageIdentifier" nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getParentPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="ax24:IPage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPricingMatrixList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="pricingMatrixCriteria" nillable="true" type="ax24:IPricingMatrixCriteria"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPricingMatrixListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IPricingMatrix"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getSecurityGroupList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getSecurityGroupListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:ISecurityGroup"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTemplateList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getTemplateListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:ITemplate"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getVodPackageList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getVodPackageListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IVodPackageReference"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportDiscountsTranslation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportDiscountsTranslationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportPageListTranslation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="pageIdentifiers" nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportPageListTranslationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportPageTranslation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="path"
+                            nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportPageTranslationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportVodCardTranslation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="vodCardIdentifer" nillable="true" type="ax25:IVODCardIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportVodCardTranslationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isAliveResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="copyPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="position"
+                            nillable="true" type="ax24:IPosition"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="copyPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="page"
+                            nillable="true" type="ax24:IPage"/>
+                        <xs:element minOccurs="0" name="position"
+                            nillable="true" type="ax24:IPosition"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createTemplate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="itemplate"
+                            nillable="true" type="ax24:ITemplate"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createTemplateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="activateVODCard">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="vodCardIdentifer" nillable="true" type="ax25:IVODCardIdentifier"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="activateVODCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="announcePage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="announcePageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cancelPageModifications">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cancelPageModificationsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="discount"
+                            nillable="true" type="ax24:IDiscount"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPricingMatrix">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pricingMatrix"
+                            nillable="true" type="ax24:IPricingMatrix"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPricingMatrixResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createShortcut">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="position"
+                            nillable="true" type="ax24:IPosition"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createShortcutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createVODCard">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="vodCard"
+                            nillable="true" type="ax25:IVODCard"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createVODCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="discountIdentifier" nillable="true" type="ax24:IDiscountIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePricingMatrix">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="pricingMatrixName" nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePricingMatrixResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteShortcut">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="page"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteShortcutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteTemplate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="itemplateIdentifier" nillable="true" type="ax24:ITemplateIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteTemplateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detachDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="discountIdentifier" nillable="true" type="ax24:IDiscountIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="detachDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="inactivateVODCard">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="vodCardIdentifer" nillable="true" type="ax25:IVODCardIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="inactivateVODCardResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="movePage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="position"
+                            nillable="true" type="ax24:IPosition"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="movePageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="moveShortcut">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="originFolder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="originPage"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="targetFolder"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="targetPosition"
+                            nillable="true" type="ax24:IPosition"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="moveShortcutResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="publishPage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="publishPageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="publishPageModifications">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="publishPageModificationsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removePageFromService">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removePageFromServiceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="revivePage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="revivePageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateDiscount">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="discountIdentifier" nillable="true" type="ax24:IDiscountIdentifier"/>
+                        <xs:element minOccurs="0" name="discount"
+                            nillable="true" type="ax24:IDiscount"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateDiscountResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="page"
+                            nillable="true" type="ax24:IPage"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="ioptions" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePageDateValue">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageIdentifier"
+                            nillable="true" type="ax24:IPageIdentifier"/>
+                        <xs:element minOccurs="0" name="dateType" type="xs:int"/>
+                        <xs:element minOccurs="0" name="value"
+                            nillable="true" type="xs:dateTime"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePageDateValueResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePricingMatrix">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="pricingMatrixName" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="pricingMatrix"
+                            nillable="true" type="ax24:IPricingMatrix"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePricingMatrixResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateTemplate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="itemplateIdentifier" nillable="true" type="ax24:ITemplateIdentifier"/>
+                        <xs:element minOccurs="0" name="itemplate"
+                            nillable="true" type="ax24:ITemplate"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateTemplateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified" targetNamespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:complexType name="IProperty">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IOption">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IPageReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="assetReference"
+                        nillable="true" type="ax25:IAssetReference"/>
+                    <xs:element minOccurs="0" name="containsFolders" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="contentDefinition"
+                        nillable="true" type="ax25:IContentDefinition"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="folder" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="lastModified"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="modified" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pageId" type="xs:long"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="shortcut" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="templateName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowReference"
+                        nillable="true" type="ax25:ITvShowReference"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IAssetReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="assetName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowEpisodeNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="tvShowSeasonName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowSeriesName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="year"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContentProvider">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContentDefinition">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITvShowReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element minOccurs="0" name="contentType"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="seasonExternalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seasonName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seasonNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="seriesExternalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seriesName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowType"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IParentalRatingLevel">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="level" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVODCardSearchCriteria">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="fromActivationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0"
+                        name="fromInactivationDate" nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="status"
+                        nillable="true" type="ax25:IVODCardStatusEnum"/>
+                    <xs:element minOccurs="0" name="toActivationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="toInactivationDate"
+                        nillable="true" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVODCardStatusEnum">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="statusId" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVODCard">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="activationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="categories" nillable="true" type="ax25:IPageReference"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="deliveryMode"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="downloadPeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element minOccurs="0" name="estOriginalPrice"
+                        nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="estPrice" type="xs:double"/>
+                    <xs:element minOccurs="0" name="expirationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="expirationDuration"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="inactivationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0"
+                        name="limitOrderingOnlyOnce" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numOfMovies"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="originalPrice"
+                        nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="price"
+                        nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="rentalPeriod"
+                        nillable="true" type="ax25:ITimePeriod"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITimePeriod">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="period" type="xs:int"/>
+                    <xs:element minOccurs="0" name="unit" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IImageAttachment">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="fileId"
+                        nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="url" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IExtraField">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IServiceReference">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="serviceId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMovieAttachment">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="assetReference"
+                        nillable="true" type="ax25:IAssetReference"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IExtraFieldDefinition">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="defaultValue"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="optionList" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVODCardIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified" targetNamespace="http://core.enums.common.orca.com/xsd">
+            <xs:complexType name="PageStatusEnum">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="defaultId" type="xs:int"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="exportPageListTranslationRequest">
+        <wsdl:part element="ns:exportPageListTranslation" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportPageListTranslationResponse">
+        <wsdl:part element="ns:exportPageListTranslationResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="ApplicationException">
+        <wsdl:part element="ns:ApplicationException" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="SystemException">
+        <wsdl:part element="ns:SystemException" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePageRequest">
+        <wsdl:part element="ns:updatePage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePageResponse">
+        <wsdl:part element="ns:updatePageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getTemplateListRequest">
+        <wsdl:part element="ns:getTemplateList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getTemplateListResponse">
+        <wsdl:part element="ns:getTemplateListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publishPageRequest">
+        <wsdl:part element="ns:publishPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publishPageResponse">
+        <wsdl:part element="ns:publishPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="activateVODCardRequest">
+        <wsdl:part element="ns:activateVODCard" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="activateVODCardResponse">
+        <wsdl:part element="ns:activateVODCardResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="detachDiscountRequest">
+        <wsdl:part element="ns:detachDiscount" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="detachDiscountResponse">
+        <wsdl:part element="ns:detachDiscountResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageHistoryRequest">
+        <wsdl:part element="ns:getPageHistory" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageHistoryResponse">
+        <wsdl:part element="ns:getPageHistoryResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageListRequest">
+        <wsdl:part element="ns:getPageList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageListResponse">
+        <wsdl:part element="ns:getPageListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="cancelPageModificationsRequest">
+        <wsdl:part element="ns:cancelPageModifications" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="cancelPageModificationsResponse">
+        <wsdl:part element="ns:cancelPageModificationsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteDiscountRequest">
+        <wsdl:part element="ns:deleteDiscount" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteDiscountResponse">
+        <wsdl:part element="ns:deleteDiscountResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportVodCardTranslationRequest">
+        <wsdl:part element="ns:exportVodCardTranslation" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportVodCardTranslationResponse">
+        <wsdl:part element="ns:exportVodCardTranslationResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchDiscountsRequest">
+        <wsdl:part element="ns:searchDiscounts" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchDiscountsResponse">
+        <wsdl:part element="ns:searchDiscountsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createPageRequest">
+        <wsdl:part element="ns:createPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createPageResponse">
+        <wsdl:part element="ns:createPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deletePricingMatrixRequest">
+        <wsdl:part element="ns:deletePricingMatrix" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deletePricingMatrixResponse">
+        <wsdl:part element="ns:deletePricingMatrixResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="movePageRequest">
+        <wsdl:part element="ns:movePage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="movePageResponse">
+        <wsdl:part element="ns:movePageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateDiscountRequest">
+        <wsdl:part element="ns:updateDiscount" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateDiscountResponse">
+        <wsdl:part element="ns:updateDiscountResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createDiscountRequest">
+        <wsdl:part element="ns:createDiscount" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createDiscountResponse">
+        <wsdl:part element="ns:createDiscountResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getParentalRatingLevelListRequest">
+        <wsdl:part element="ns:getParentalRatingLevelList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getParentalRatingLevelListResponse">
+        <wsdl:part element="ns:getParentalRatingLevelListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publishPageModificationsRequest">
+        <wsdl:part element="ns:publishPageModifications" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publishPageModificationsResponse">
+        <wsdl:part element="ns:publishPageModificationsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createShortcutRequest">
+        <wsdl:part element="ns:createShortcut" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createShortcutResponse">
+        <wsdl:part element="ns:createShortcutResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchPagesRequest">
+        <wsdl:part element="ns:searchPages" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchPagesResponse">
+        <wsdl:part element="ns:searchPagesResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportPageTranslationRequest">
+        <wsdl:part element="ns:exportPageTranslation" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportPageTranslationResponse">
+        <wsdl:part element="ns:exportPageTranslationResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getSecurityGroupListRequest">
+        <wsdl:part element="ns:getSecurityGroupList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getSecurityGroupListResponse">
+        <wsdl:part element="ns:getSecurityGroupListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="revivePageRequest">
+        <wsdl:part element="ns:revivePage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="revivePageResponse">
+        <wsdl:part element="ns:revivePageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPricingMatrixListRequest">
+        <wsdl:part element="ns:getPricingMatrixList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPricingMatrixListResponse">
+        <wsdl:part element="ns:getPricingMatrixListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createVODCardRequest">
+        <wsdl:part element="ns:createVODCard" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createVODCardResponse">
+        <wsdl:part element="ns:createVODCardResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="isAliveRequest"/>
+    <wsdl:message name="isAliveResponse">
+        <wsdl:part element="ns:isAliveResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="inactivateVODCardRequest">
+        <wsdl:part element="ns:inactivateVODCard" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="inactivateVODCardResponse">
+        <wsdl:part element="ns:inactivateVODCardResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getDiscountRequest">
+        <wsdl:part element="ns:getDiscount" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getDiscountResponse">
+        <wsdl:part element="ns:getDiscountResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePricingMatrixRequest">
+        <wsdl:part element="ns:updatePricingMatrix" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePricingMatrixResponse">
+        <wsdl:part element="ns:updatePricingMatrixResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchVODCardsRequest">
+        <wsdl:part element="ns:searchVODCards" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchVODCardsResponse">
+        <wsdl:part element="ns:searchVODCardsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePageDateValueRequest">
+        <wsdl:part element="ns:updatePageDateValue" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updatePageDateValueResponse">
+        <wsdl:part element="ns:updatePageDateValueResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageRequest">
+        <wsdl:part element="ns:getPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getPageResponse">
+        <wsdl:part element="ns:getPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createTemplateRequest">
+        <wsdl:part element="ns:createTemplate" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createTemplateResponse">
+        <wsdl:part element="ns:createTemplateResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getParentPageRequest">
+        <wsdl:part element="ns:getParentPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getParentPageResponse">
+        <wsdl:part element="ns:getParentPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="moveShortcutRequest">
+        <wsdl:part element="ns:moveShortcut" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="moveShortcutResponse">
+        <wsdl:part element="ns:moveShortcutResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createPricingMatrixRequest">
+        <wsdl:part element="ns:createPricingMatrix" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createPricingMatrixResponse">
+        <wsdl:part element="ns:createPricingMatrixResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="copyPageRequest">
+        <wsdl:part element="ns:copyPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="copyPageResponse">
+        <wsdl:part element="ns:copyPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateTemplateRequest">
+        <wsdl:part element="ns:updateTemplate" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateTemplateResponse">
+        <wsdl:part element="ns:updateTemplateResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="removePageFromServiceRequest">
+        <wsdl:part element="ns:removePageFromService" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="removePageFromServiceResponse">
+        <wsdl:part element="ns:removePageFromServiceResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getVodPackageListRequest">
+        <wsdl:part element="ns:getVodPackageList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getVodPackageListResponse">
+        <wsdl:part element="ns:getVodPackageListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteShortcutRequest">
+        <wsdl:part element="ns:deleteShortcut" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteShortcutResponse">
+        <wsdl:part element="ns:deleteShortcutResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deletePageRequest">
+        <wsdl:part element="ns:deletePage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deletePageResponse">
+        <wsdl:part element="ns:deletePageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="announcePageRequest">
+        <wsdl:part element="ns:announcePage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="announcePageResponse">
+        <wsdl:part element="ns:announcePageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteTemplateRequest">
+        <wsdl:part element="ns:deleteTemplate" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteTemplateResponse">
+        <wsdl:part element="ns:deleteTemplateResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getModifiedPageRequest">
+        <wsdl:part element="ns:getModifiedPage" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getModifiedPageResponse">
+        <wsdl:part element="ns:getModifiedPageResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportDiscountsTranslationRequest">
+        <wsdl:part element="ns:exportDiscountsTranslation" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportDiscountsTranslationResponse">
+        <wsdl:part element="ns:exportDiscountsTranslationResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="CatalogAPIWSPortType">
+        <wsdl:operation name="exportPageListTranslation">
+            <wsdl:input message="axis2:exportPageListTranslationRequest" wsaw:Action="urn:exportPageListTranslation"/>
+            <wsdl:output
+                message="axis2:exportPageListTranslationResponse" wsaw:Action="urn:exportPageListTranslationResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:exportPageListTranslationApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:exportPageListTranslationSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updatePage">
+            <wsdl:input message="axis2:updatePageRequest" wsaw:Action="urn:updatePage"/>
+            <wsdl:output message="axis2:updatePageResponse" wsaw:Action="urn:updatePageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updatePageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updatePageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTemplateList">
+            <wsdl:input message="axis2:getTemplateListRequest" wsaw:Action="urn:getTemplateList"/>
+            <wsdl:output message="axis2:getTemplateListResponse" wsaw:Action="urn:getTemplateListResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getTemplateListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="publishPage">
+            <wsdl:input message="axis2:publishPageRequest" wsaw:Action="urn:publishPage"/>
+            <wsdl:output message="axis2:publishPageResponse" wsaw:Action="urn:publishPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:publishPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:publishPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="activateVODCard">
+            <wsdl:input message="axis2:activateVODCardRequest" wsaw:Action="urn:activateVODCard"/>
+            <wsdl:output message="axis2:activateVODCardResponse" wsaw:Action="urn:activateVODCardResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:activateVODCardApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:activateVODCardSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="detachDiscount">
+            <wsdl:input message="axis2:detachDiscountRequest" wsaw:Action="urn:detachDiscount"/>
+            <wsdl:output message="axis2:detachDiscountResponse" wsaw:Action="urn:detachDiscountResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:detachDiscountApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:detachDiscountSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPageHistory">
+            <wsdl:input message="axis2:getPageHistoryRequest" wsaw:Action="urn:getPageHistory"/>
+            <wsdl:output message="axis2:getPageHistoryResponse" wsaw:Action="urn:getPageHistoryResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getPageHistoryApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getPageHistorySystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPageList">
+            <wsdl:input message="axis2:getPageListRequest" wsaw:Action="urn:getPageList"/>
+            <wsdl:output message="axis2:getPageListResponse" wsaw:Action="urn:getPageListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getPageListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getPageListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="cancelPageModifications">
+            <wsdl:input message="axis2:cancelPageModificationsRequest" wsaw:Action="urn:cancelPageModifications"/>
+            <wsdl:output message="axis2:cancelPageModificationsResponse" wsaw:Action="urn:cancelPageModificationsResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:cancelPageModificationsApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:cancelPageModificationsSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteDiscount">
+            <wsdl:input message="axis2:deleteDiscountRequest" wsaw:Action="urn:deleteDiscount"/>
+            <wsdl:output message="axis2:deleteDiscountResponse" wsaw:Action="urn:deleteDiscountResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteDiscountApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteDiscountSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportVodCardTranslation">
+            <wsdl:input message="axis2:exportVodCardTranslationRequest" wsaw:Action="urn:exportVodCardTranslation"/>
+            <wsdl:output
+                message="axis2:exportVodCardTranslationResponse" wsaw:Action="urn:exportVodCardTranslationResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:exportVodCardTranslationApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:exportVodCardTranslationSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchDiscounts">
+            <wsdl:input message="axis2:searchDiscountsRequest" wsaw:Action="urn:searchDiscounts"/>
+            <wsdl:output message="axis2:searchDiscountsResponse" wsaw:Action="urn:searchDiscountsResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:searchDiscountsApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:searchDiscountsSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createPage">
+            <wsdl:input message="axis2:createPageRequest" wsaw:Action="urn:createPage"/>
+            <wsdl:output message="axis2:createPageResponse" wsaw:Action="urn:createPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deletePricingMatrix">
+            <wsdl:input message="axis2:deletePricingMatrixRequest" wsaw:Action="urn:deletePricingMatrix"/>
+            <wsdl:output message="axis2:deletePricingMatrixResponse" wsaw:Action="urn:deletePricingMatrixResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deletePricingMatrixApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deletePricingMatrixSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="movePage">
+            <wsdl:input message="axis2:movePageRequest" wsaw:Action="urn:movePage"/>
+            <wsdl:output message="axis2:movePageResponse" wsaw:Action="urn:movePageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:movePageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:movePageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateDiscount">
+            <wsdl:input message="axis2:updateDiscountRequest" wsaw:Action="urn:updateDiscount"/>
+            <wsdl:output message="axis2:updateDiscountResponse" wsaw:Action="urn:updateDiscountResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateDiscountApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateDiscountSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createDiscount">
+            <wsdl:input message="axis2:createDiscountRequest" wsaw:Action="urn:createDiscount"/>
+            <wsdl:output message="axis2:createDiscountResponse" wsaw:Action="urn:createDiscountResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createDiscountApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createDiscountSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getParentalRatingLevelList">
+            <wsdl:input
+                message="axis2:getParentalRatingLevelListRequest" wsaw:Action="urn:getParentalRatingLevelList"/>
+            <wsdl:output
+                message="axis2:getParentalRatingLevelListResponse" wsaw:Action="urn:getParentalRatingLevelListResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getParentalRatingLevelListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="publishPageModifications">
+            <wsdl:input message="axis2:publishPageModificationsRequest" wsaw:Action="urn:publishPageModifications"/>
+            <wsdl:output
+                message="axis2:publishPageModificationsResponse" wsaw:Action="urn:publishPageModificationsResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:publishPageModificationsApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:publishPageModificationsSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createShortcut">
+            <wsdl:input message="axis2:createShortcutRequest" wsaw:Action="urn:createShortcut"/>
+            <wsdl:output message="axis2:createShortcutResponse" wsaw:Action="urn:createShortcutResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createShortcutApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createShortcutSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchPages">
+            <wsdl:input message="axis2:searchPagesRequest" wsaw:Action="urn:searchPages"/>
+            <wsdl:output message="axis2:searchPagesResponse" wsaw:Action="urn:searchPagesResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:searchPagesApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:searchPagesSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportPageTranslation">
+            <wsdl:input message="axis2:exportPageTranslationRequest" wsaw:Action="urn:exportPageTranslation"/>
+            <wsdl:output message="axis2:exportPageTranslationResponse" wsaw:Action="urn:exportPageTranslationResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:exportPageTranslationApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:exportPageTranslationSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getSecurityGroupList">
+            <wsdl:input message="axis2:getSecurityGroupListRequest" wsaw:Action="urn:getSecurityGroupList"/>
+            <wsdl:output message="axis2:getSecurityGroupListResponse" wsaw:Action="urn:getSecurityGroupListResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getSecurityGroupListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="revivePage">
+            <wsdl:input message="axis2:revivePageRequest" wsaw:Action="urn:revivePage"/>
+            <wsdl:output message="axis2:revivePageResponse" wsaw:Action="urn:revivePageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:revivePageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:revivePageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPricingMatrixList">
+            <wsdl:input message="axis2:getPricingMatrixListRequest" wsaw:Action="urn:getPricingMatrixList"/>
+            <wsdl:output message="axis2:getPricingMatrixListResponse" wsaw:Action="urn:getPricingMatrixListResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getPricingMatrixListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createVODCard">
+            <wsdl:input message="axis2:createVODCardRequest" wsaw:Action="urn:createVODCard"/>
+            <wsdl:output message="axis2:createVODCardResponse" wsaw:Action="urn:createVODCardResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createVODCardApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createVODCardSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="isAlive">
+            <wsdl:input message="axis2:isAliveRequest" wsaw:Action="urn:isAlive"/>
+            <wsdl:output message="axis2:isAliveResponse" wsaw:Action="urn:isAliveResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:isAliveSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="inactivateVODCard">
+            <wsdl:input message="axis2:inactivateVODCardRequest" wsaw:Action="urn:inactivateVODCard"/>
+            <wsdl:output message="axis2:inactivateVODCardResponse" wsaw:Action="urn:inactivateVODCardResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:inactivateVODCardApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:inactivateVODCardSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDiscount">
+            <wsdl:input message="axis2:getDiscountRequest" wsaw:Action="urn:getDiscount"/>
+            <wsdl:output message="axis2:getDiscountResponse" wsaw:Action="urn:getDiscountResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getDiscountApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getDiscountSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updatePricingMatrix">
+            <wsdl:input message="axis2:updatePricingMatrixRequest" wsaw:Action="urn:updatePricingMatrix"/>
+            <wsdl:output message="axis2:updatePricingMatrixResponse" wsaw:Action="urn:updatePricingMatrixResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updatePricingMatrixApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updatePricingMatrixSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchVODCards">
+            <wsdl:input message="axis2:searchVODCardsRequest" wsaw:Action="urn:searchVODCards"/>
+            <wsdl:output message="axis2:searchVODCardsResponse" wsaw:Action="urn:searchVODCardsResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:searchVODCardsApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:searchVODCardsSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updatePageDateValue">
+            <wsdl:input message="axis2:updatePageDateValueRequest" wsaw:Action="urn:updatePageDateValue"/>
+            <wsdl:output message="axis2:updatePageDateValueResponse" wsaw:Action="urn:updatePageDateValueResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updatePageDateValueApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updatePageDateValueSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPage">
+            <wsdl:input message="axis2:getPageRequest" wsaw:Action="urn:getPage"/>
+            <wsdl:output message="axis2:getPageResponse" wsaw:Action="urn:getPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createTemplate">
+            <wsdl:input message="axis2:createTemplateRequest" wsaw:Action="urn:createTemplate"/>
+            <wsdl:output message="axis2:createTemplateResponse" wsaw:Action="urn:createTemplateResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createTemplateApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createTemplateSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getParentPage">
+            <wsdl:input message="axis2:getParentPageRequest" wsaw:Action="urn:getParentPage"/>
+            <wsdl:output message="axis2:getParentPageResponse" wsaw:Action="urn:getParentPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getParentPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getParentPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="moveShortcut">
+            <wsdl:input message="axis2:moveShortcutRequest" wsaw:Action="urn:moveShortcut"/>
+            <wsdl:output message="axis2:moveShortcutResponse" wsaw:Action="urn:moveShortcutResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:moveShortcutApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:moveShortcutSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createPricingMatrix">
+            <wsdl:input message="axis2:createPricingMatrixRequest" wsaw:Action="urn:createPricingMatrix"/>
+            <wsdl:output message="axis2:createPricingMatrixResponse" wsaw:Action="urn:createPricingMatrixResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createPricingMatrixApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createPricingMatrixSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="copyPage">
+            <wsdl:input message="axis2:copyPageRequest" wsaw:Action="urn:copyPage"/>
+            <wsdl:output message="axis2:copyPageResponse" wsaw:Action="urn:copyPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:copyPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:copyPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateTemplate">
+            <wsdl:input message="axis2:updateTemplateRequest" wsaw:Action="urn:updateTemplate"/>
+            <wsdl:output message="axis2:updateTemplateResponse" wsaw:Action="urn:updateTemplateResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateTemplateApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateTemplateSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="removePageFromService">
+            <wsdl:input message="axis2:removePageFromServiceRequest" wsaw:Action="urn:removePageFromService"/>
+            <wsdl:output message="axis2:removePageFromServiceResponse" wsaw:Action="urn:removePageFromServiceResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:removePageFromServiceApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:removePageFromServiceSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVodPackageList">
+            <wsdl:input message="axis2:getVodPackageListRequest" wsaw:Action="urn:getVodPackageList"/>
+            <wsdl:output message="axis2:getVodPackageListResponse" wsaw:Action="urn:getVodPackageListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getVodPackageListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getVodPackageListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteShortcut">
+            <wsdl:input message="axis2:deleteShortcutRequest" wsaw:Action="urn:deleteShortcut"/>
+            <wsdl:output message="axis2:deleteShortcutResponse" wsaw:Action="urn:deleteShortcutResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteShortcutApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteShortcutSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deletePage">
+            <wsdl:input message="axis2:deletePageRequest" wsaw:Action="urn:deletePage"/>
+            <wsdl:output message="axis2:deletePageResponse" wsaw:Action="urn:deletePageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deletePageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deletePageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="announcePage">
+            <wsdl:input message="axis2:announcePageRequest" wsaw:Action="urn:announcePage"/>
+            <wsdl:output message="axis2:announcePageResponse" wsaw:Action="urn:announcePageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:announcePageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:announcePageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteTemplate">
+            <wsdl:input message="axis2:deleteTemplateRequest" wsaw:Action="urn:deleteTemplate"/>
+            <wsdl:output message="axis2:deleteTemplateResponse" wsaw:Action="urn:deleteTemplateResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteTemplateApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteTemplateSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getModifiedPage">
+            <wsdl:input message="axis2:getModifiedPageRequest" wsaw:Action="urn:getModifiedPage"/>
+            <wsdl:output message="axis2:getModifiedPageResponse" wsaw:Action="urn:getModifiedPageResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getModifiedPageApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getModifiedPageSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportDiscountsTranslation">
+            <wsdl:input
+                message="axis2:exportDiscountsTranslationRequest" wsaw:Action="urn:exportDiscountsTranslation"/>
+            <wsdl:output
+                message="axis2:exportDiscountsTranslationResponse" wsaw:Action="urn:exportDiscountsTranslationResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:exportDiscountsTranslationApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:exportDiscountsTranslationSystemException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CatalogAPIWSSoap11Binding" type="axis2:CatalogAPIWSPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="exportPageListTranslation">
+            <soap:operation soapAction="urn:exportPageListTranslation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getTemplateList">
+            <soap:operation soapAction="urn:getTemplateList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updatePage">
+            <soap:operation soapAction="urn:updatePage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="activateVODCard">
+            <soap:operation soapAction="urn:activateVODCard" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="publishPage">
+            <soap:operation soapAction="urn:publishPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="detachDiscount">
+            <soap:operation soapAction="urn:detachDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPageList">
+            <soap:operation soapAction="urn:getPageList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPageHistory">
+            <soap:operation soapAction="urn:getPageHistory" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelPageModifications">
+            <soap:operation soapAction="urn:cancelPageModifications" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteDiscount">
+            <soap:operation soapAction="urn:deleteDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="exportVodCardTranslation">
+            <soap:operation soapAction="urn:exportVodCardTranslation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchDiscounts">
+            <soap:operation soapAction="urn:searchDiscounts" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createPage">
+            <soap:operation soapAction="urn:createPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deletePricingMatrix">
+            <soap:operation soapAction="urn:deletePricingMatrix" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="movePage">
+            <soap:operation soapAction="urn:movePage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateDiscount">
+            <soap:operation soapAction="urn:updateDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createDiscount">
+            <soap:operation soapAction="urn:createDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getParentalRatingLevelList">
+            <soap:operation soapAction="urn:getParentalRatingLevelList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="publishPageModifications">
+            <soap:operation soapAction="urn:publishPageModifications" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createShortcut">
+            <soap:operation soapAction="urn:createShortcut" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchPages">
+            <soap:operation soapAction="urn:searchPages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="exportPageTranslation">
+            <soap:operation soapAction="urn:exportPageTranslation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getSecurityGroupList">
+            <soap:operation soapAction="urn:getSecurityGroupList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPricingMatrixList">
+            <soap:operation soapAction="urn:getPricingMatrixList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="revivePage">
+            <soap:operation soapAction="urn:revivePage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createVODCard">
+            <soap:operation soapAction="urn:createVODCard" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="isAlive">
+            <soap:operation soapAction="urn:isAlive" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getDiscount">
+            <soap:operation soapAction="urn:getDiscount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="inactivateVODCard">
+            <soap:operation soapAction="urn:inactivateVODCard" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updatePricingMatrix">
+            <soap:operation soapAction="urn:updatePricingMatrix" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchVODCards">
+            <soap:operation soapAction="urn:searchVODCards" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updatePageDateValue">
+            <soap:operation soapAction="urn:updatePageDateValue" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPage">
+            <soap:operation soapAction="urn:getPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createTemplate">
+            <soap:operation soapAction="urn:createTemplate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getParentPage">
+            <soap:operation soapAction="urn:getParentPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="moveShortcut">
+            <soap:operation soapAction="urn:moveShortcut" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="copyPage">
+            <soap:operation soapAction="urn:copyPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createPricingMatrix">
+            <soap:operation soapAction="urn:createPricingMatrix" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateTemplate">
+            <soap:operation soapAction="urn:updateTemplate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="removePageFromService">
+            <soap:operation soapAction="urn:removePageFromService" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getVodPackageList">
+            <soap:operation soapAction="urn:getVodPackageList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteShortcut">
+            <soap:operation soapAction="urn:deleteShortcut" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deletePage">
+            <soap:operation soapAction="urn:deletePage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="exportDiscountsTranslation">
+            <soap:operation soapAction="urn:exportDiscountsTranslation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getModifiedPage">
+            <soap:operation soapAction="urn:getModifiedPage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteTemplate">
+            <soap:operation soapAction="urn:deleteTemplate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="announcePage">
+            <soap:operation soapAction="urn:announcePage" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CatalogAPIWS">
+        <wsdl:port binding="axis2:CatalogAPIWSSoap11Binding" name="CatalogAPIWSHttpSoap11Endpoint">
+            <soap:address location="http://10.250.10.206:8082/RightvAPIWS/services/CatalogAPIWS83"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

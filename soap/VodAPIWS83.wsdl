@@ -1,0 +1,1898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://VodAPIWS/"
+    xmlns:ax21="http://exceptions.common.orca.com/xsd"
+    xmlns:ax24="http://entities.vod.v83.interfaces.rightv.orca.com/xsd"
+    xmlns:ax25="http://entities.common.v83.interfaces.rightv.orca.com/xsd"
+    xmlns:ax29="http://entities.core.v83.interfaces.rightv.orca.com/xsd"
+    xmlns:axis2="http://VodAPIWS/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:ns="http://VodAPIWS/xsd"
+    xmlns:ns1="http://org.apache.axis2/xsd"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://entities.core.v83.interfaces.rightv.orca.com/xsd" xmlns:ax210="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:import namespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:complexType name="IHistoryRecord">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="date"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="message"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IDubbing">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="audioFormat"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="audioMode"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="language"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="order"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="visuallyImpaired" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ISubtitles">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="forced"
+                        nillable="true" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="hearingImpaired" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="inVideo" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="language"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://exceptions.common.orca.com/xsd" xmlns:ax22="http://VodAPIWS/xsd">
+            <xs:import namespace="http://VodAPIWS/xsd"/>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://entities.vod.v83.interfaces.rightv.orca.com/xsd"
+            xmlns:ax212="http://entities.core.v83.interfaces.rightv.orca.com/xsd" xmlns:ax26="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:import namespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:import namespace="http://entities.core.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:complexType name="IMediaFileIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContentStore">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IFolder">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMediaFileProfile">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="adaptiveStreaming"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="bitrate"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="cpsEncryptionControl" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="cpsSystem"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="definition"
+                        nillable="true" type="ax25:IContentDefinition"/>
+                    <xs:element minOccurs="0" name="deliveryMode"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="distributedByCPS"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="encodingFormat"
+                        nillable="true" type="ax25:IEncodingFormat"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="horizontalSize"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="profileCpsId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="verticalSize"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vodCas"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="vodVs"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVideoAssetIdentifier">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMediaFile">
+                <xs:sequence>
+                    <xs:element minOccurs="0"
+                        name="adaptiveStreamingType" type="xs:int"/>
+                    <xs:element minOccurs="0" name="bitrate"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="casMfId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="checkingMD5"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="checkingProfile"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="definition"
+                        nillable="true" type="ax25:IContentDefinition"/>
+                    <xs:element minOccurs="0" name="deleteSource"
+                        nillable="true" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="deliveryMode" type="xs:int"/>
+                    <xs:element minOccurs="0" name="displayType" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="distributionControlEnum" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="dubbing" nillable="true" type="ax29:IDubbing"/>
+                    <xs:element minOccurs="0" name="duration"
+                        nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="encryption"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0"
+                        name="encryptionControlEnum" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extraFields" nillable="true" type="ax25:IExtraField"/>
+                    <xs:element minOccurs="0" name="format"
+                        nillable="true" type="ax25:IEncodingFormat"/>
+                    <xs:element minOccurs="0" name="horizontalSize"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="inputMediaFile"
+                        nillable="true" type="ax24:IMediaFileInput"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="outputFiles" nillable="true" type="ax24:IMediaFileOutputFile"/>
+                    <xs:element minOccurs="0"
+                        name="provisioningPriority" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="source"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="subtitles" nillable="true" type="ax29:ISubtitles"/>
+                    <xs:element minOccurs="0" name="verticalSize"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="videoServer"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMediaFileInput">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMediaFileOutputFile">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="profileName"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IServiceDistribution">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="autoCDN"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="deletionFromVSDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="densityType"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="densityValue"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="distributionDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="distributionStatus" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extraFields" nillable="true" type="ax25:IExtraField"/>
+                    <xs:element minOccurs="0" name="serviceGroup" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVideoAsset">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="adminComment"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="advisories"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="allowedTerminalCategories" nillable="true" type="ax25:ITerminalCategoryIdentifier"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="awards" nillable="true" type="ax25:IAward"/>
+                    <xs:element minOccurs="0" name="broadcastTime"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="catalogPriority"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="chapters" nillable="true" type="ax24:IChapter"/>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="contributors" nillable="true" type="ax25:IContributor"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="countries" nillable="true" type="ax25:ICountry"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="deletionDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="deletionDelay"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="episodeId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalChannelId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extrafields" nillable="true" type="ax25:IExtraField"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="genres" nillable="true" type="ax25:IGenre"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="imageAttachments" nillable="true" type="ax25:IImageAttachment"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="keywords" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="licenseEndDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="licenseStartDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="movieAttachments" nillable="true" type="ax25:IMovieAttachment"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="parentalRatingLevel"
+                        nillable="true" type="ax25:IParentalRatingLevel"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="reviews" nillable="true" type="ax25:IReview"/>
+                    <xs:element minOccurs="0" name="seriesId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seriesName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seriesSeason"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="shortDescription"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="shortName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="studio"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="translated" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="tvShowEpisodeNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="tvShowSeasonIdentifier" nillable="true" type="ax25:ITvShowSeasonIdentifier"/>
+                    <xs:element minOccurs="0" name="year"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IChapter">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="imageAttachments" nillable="true" type="ax25:IImageAttachment"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="position"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IVideoAssetReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element minOccurs="0" name="creationDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="licenseEndDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="licenseStartDate"
+                        nillable="true" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="mediaFileReferences" nillable="true" type="ax24:IMediaFileReference"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="path"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                    <xs:element minOccurs="0" name="translated" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="tvShowEpisodeNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="tvShowSeasonName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowSeriesName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="updateDate"
+                        nillable="true" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMediaFileReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="status" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IServiceDistributionIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mediaFileExternalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="serviceGroup"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://VodAPIWS/xsd"
+            xmlns:ax211="http://entities.core.v83.interfaces.rightv.orca.com/xsd"
+            xmlns:ax23="http://exceptions.common.orca.com/xsd"
+            xmlns:ax27="http://entities.vod.v83.interfaces.rightv.orca.com/xsd" xmlns:ax28="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:import namespace="http://exceptions.common.orca.com/xsd"/>
+            <xs:import namespace="http://entities.vod.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:import namespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:import namespace="http://entities.core.v83.interfaces.rightv.orca.com/xsd"/>
+            <xs:element name="SystemException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="arg0"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg1"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg2"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg3"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="errorCode"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="message"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ApplicationException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="aPIFormated" type="xs:boolean"/>
+                        <xs:element minOccurs="0" name="arg0"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg1"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg2"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="arg3"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="errorCode"
+                            nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="message"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileHistoryList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileHistoryListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax211:IHistoryRecord"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getContentStoreList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getContentStoreListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IContentStore"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getFolderList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="parent"
+                            nillable="true" type="ax24:IFolder"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getFolderListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IFolder"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileProfileList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileProfileListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IMediaFileProfile"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAssetMediaFileList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAssetMediaFileListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IMediaFile"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileServiceDistributionList">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMediaFileServiceDistributionListResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IServiceDistribution"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAsset">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAssetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="ax24:IVideoAsset"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchAssets">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="criteria"
+                            nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchAssetsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="return" nillable="true" type="ax24:IVideoAssetReference"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportAssetListTranslation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="assetIdentifiers" nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="exportAssetListTranslationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="isAliveResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return"
+                            nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createAsset">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IFolder"/>
+                        <xs:element minOccurs="0" name="asset"
+                            nillable="true" type="ax24:IVideoAsset"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createAssetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createFolder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="parent"
+                            nillable="true" type="ax24:IFolder"/>
+                        <xs:element minOccurs="0" name="folderName"
+                            nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createFolderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createMediaFile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element minOccurs="0" name="mediaFile"
+                            nillable="true" type="ax24:IMediaFile"/>
+                        <xs:element minOccurs="0"
+                            name="iServiceDistribution" nillable="true" type="ax24:IServiceDistribution"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createMediaFileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createServiceDistribution">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element minOccurs="0"
+                            name="serviceDistribution" nillable="true" type="ax24:IServiceDistribution"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createServiceDistributionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteAsset">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteAssetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteFolder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="folder"
+                            nillable="true" type="ax24:IFolder"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteFolderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteMediaFile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteMediaFileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteServiceDistribution">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="serviceDistributionidentifier"
+                            nillable="true" type="ax24:IServiceDistributionIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteServiceDistributionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="moveAsset">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element minOccurs="0" name="newPath"
+                            nillable="true" type="ax24:IFolder"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="moveAssetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="retryMediaFileProcessing">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="retryMediaFileProcessingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAsset">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element minOccurs="0" name="asset"
+                            nillable="true" type="ax24:IVideoAsset"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAssetResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAssetDateValue">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="assetIdentifier"
+                            nillable="true" type="ax24:IVideoAssetIdentifier"/>
+                        <xs:element minOccurs="0" name="type" type="xs:int"/>
+                        <xs:element minOccurs="0" name="value"
+                            nillable="true" type="xs:dateTime"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAssetDateValueResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateFolder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="folderIdentifier" nillable="true" type="ax24:IFolder"/>
+                        <xs:element minOccurs="0" name="folderName"
+                            nillable="true" type="xs:string"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateFolderResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateMediaFile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="mediaFileIdentifier" nillable="true" type="ax24:IMediaFileIdentifier"/>
+                        <xs:element minOccurs="0" name="mediaFile"
+                            nillable="true" type="ax24:IMediaFile"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateMediaFileResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateServiceDistribution">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0"
+                            name="serviceDistributionidentifier"
+                            nillable="true" type="ax24:IServiceDistributionIdentifier"/>
+                        <xs:element minOccurs="0"
+                            name="serviceDistribution" nillable="true" type="ax24:IServiceDistribution"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                            name="options" nillable="true" type="ax25:IOption"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateServiceDistributionResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" nillable="true">
+                            <xs:complexType>
+                                <xs:sequence/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified"
+            elementFormDefault="qualified" targetNamespace="http://entities.common.v83.interfaces.rightv.orca.com/xsd">
+            <xs:complexType name="IProperty">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IOption">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContentDefinition">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IEncodingFormat">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="description"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContentProvider">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IExtraField">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITerminalCategoryIdentifier">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IAward">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="title"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="year"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IImageAttachment">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="fileId"
+                        nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="url" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IContributor">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="firstName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="inRole"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lastName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="popularityLevel"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="role"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ICountry">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code"
+                        nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IGenre">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="parentName"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IMovieAttachment">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="assetReference"
+                        nillable="true" type="ax25:IAssetReference"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IAssetReference">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="assetName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="contentProvider"
+                        nillable="true" type="ax25:IContentProvider"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowEpisodeNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="tvShowSeasonName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tvShowSeriesName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="year"
+                        nillable="true" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IParentalRatingLevel">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="level" type="xs:long"/>
+                    <xs:element minOccurs="0" name="name"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IReview">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="rating"
+                        nillable="true" type="xs:float"/>
+                    <xs:element minOccurs="0" name="reviewerFirstName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="reviewerLastName"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0"
+                        name="reviewerOrganization" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="text"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITvShowSeasonIdentifier">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contentType"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="seasonNumber"
+                        nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0"
+                        name="tvShowSeriesIdentifier" nillable="true" type="ax25:ITvShowSeriesIdentifier"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ITvShowSeriesIdentifier">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contentType"
+                        nillable="true" type="xs:int"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0"
+                        name="extendedProperties" nillable="true" type="ax25:IProperty"/>
+                    <xs:element minOccurs="0" name="externalId"
+                        nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="moveAssetRequest">
+        <wsdl:part element="ns:moveAsset" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="moveAssetResponse">
+        <wsdl:part element="ns:moveAssetResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="ApplicationException">
+        <wsdl:part element="ns:ApplicationException" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="SystemException">
+        <wsdl:part element="ns:SystemException" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteMediaFileRequest">
+        <wsdl:part element="ns:deleteMediaFile" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteMediaFileResponse">
+        <wsdl:part element="ns:deleteMediaFileResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateMediaFileRequest">
+        <wsdl:part element="ns:updateMediaFile" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateMediaFileResponse">
+        <wsdl:part element="ns:updateMediaFileResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createServiceDistributionRequest">
+        <wsdl:part element="ns:createServiceDistribution" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createServiceDistributionResponse">
+        <wsdl:part element="ns:createServiceDistributionResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileServiceDistributionListRequest">
+        <wsdl:part element="ns:getMediaFileServiceDistributionList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileServiceDistributionListResponse">
+        <wsdl:part
+            element="ns:getMediaFileServiceDistributionListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteAssetRequest">
+        <wsdl:part element="ns:deleteAsset" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteAssetResponse">
+        <wsdl:part element="ns:deleteAssetResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getContentStoreListRequest">
+        <wsdl:part element="ns:getContentStoreList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getContentStoreListResponse">
+        <wsdl:part element="ns:getContentStoreListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateFolderRequest">
+        <wsdl:part element="ns:updateFolder" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateFolderResponse">
+        <wsdl:part element="ns:updateFolderResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createMediaFileRequest">
+        <wsdl:part element="ns:createMediaFile" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createMediaFileResponse">
+        <wsdl:part element="ns:createMediaFileResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportAssetListTranslationRequest">
+        <wsdl:part element="ns:exportAssetListTranslation" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="exportAssetListTranslationResponse">
+        <wsdl:part element="ns:exportAssetListTranslationResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileProfileListRequest">
+        <wsdl:part element="ns:getMediaFileProfileList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileProfileListResponse">
+        <wsdl:part element="ns:getMediaFileProfileListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="isAliveRequest"/>
+    <wsdl:message name="isAliveResponse">
+        <wsdl:part element="ns:isAliveResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileHistoryListRequest">
+        <wsdl:part element="ns:getMediaFileHistoryList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getMediaFileHistoryListResponse">
+        <wsdl:part element="ns:getMediaFileHistoryListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getFolderListRequest">
+        <wsdl:part element="ns:getFolderList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getFolderListResponse">
+        <wsdl:part element="ns:getFolderListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateAssetRequest">
+        <wsdl:part element="ns:updateAsset" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateAssetResponse">
+        <wsdl:part element="ns:updateAssetResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchAssetsRequest">
+        <wsdl:part element="ns:searchAssets" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="searchAssetsResponse">
+        <wsdl:part element="ns:searchAssetsResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getAssetRequest">
+        <wsdl:part element="ns:getAsset" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getAssetResponse">
+        <wsdl:part element="ns:getAssetResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="retryMediaFileProcessingRequest">
+        <wsdl:part element="ns:retryMediaFileProcessing" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="retryMediaFileProcessingResponse">
+        <wsdl:part element="ns:retryMediaFileProcessingResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createAssetRequest">
+        <wsdl:part element="ns:createAsset" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createAssetResponse">
+        <wsdl:part element="ns:createAssetResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateServiceDistributionRequest">
+        <wsdl:part element="ns:updateServiceDistribution" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateServiceDistributionResponse">
+        <wsdl:part element="ns:updateServiceDistributionResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getAssetMediaFileListRequest">
+        <wsdl:part element="ns:getAssetMediaFileList" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="getAssetMediaFileListResponse">
+        <wsdl:part element="ns:getAssetMediaFileListResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteServiceDistributionRequest">
+        <wsdl:part element="ns:deleteServiceDistribution" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteServiceDistributionResponse">
+        <wsdl:part element="ns:deleteServiceDistributionResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteFolderRequest">
+        <wsdl:part element="ns:deleteFolder" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="deleteFolderResponse">
+        <wsdl:part element="ns:deleteFolderResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createFolderRequest">
+        <wsdl:part element="ns:createFolder" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="createFolderResponse">
+        <wsdl:part element="ns:createFolderResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateAssetDateValueRequest">
+        <wsdl:part element="ns:updateAssetDateValue" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="updateAssetDateValueResponse">
+        <wsdl:part element="ns:updateAssetDateValueResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="VodAPIWSPortType">
+        <wsdl:operation name="moveAsset">
+            <wsdl:input message="axis2:moveAssetRequest" wsaw:Action="urn:moveAsset"/>
+            <wsdl:output message="axis2:moveAssetResponse" wsaw:Action="urn:moveAssetResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:moveAssetApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:moveAssetSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteMediaFile">
+            <wsdl:input message="axis2:deleteMediaFileRequest" wsaw:Action="urn:deleteMediaFile"/>
+            <wsdl:output message="axis2:deleteMediaFileResponse" wsaw:Action="urn:deleteMediaFileResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteMediaFileApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteMediaFileSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateMediaFile">
+            <wsdl:input message="axis2:updateMediaFileRequest" wsaw:Action="urn:updateMediaFile"/>
+            <wsdl:output message="axis2:updateMediaFileResponse" wsaw:Action="urn:updateMediaFileResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateMediaFileApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateMediaFileSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createServiceDistribution">
+            <wsdl:input message="axis2:createServiceDistributionRequest" wsaw:Action="urn:createServiceDistribution"/>
+            <wsdl:output
+                message="axis2:createServiceDistributionResponse" wsaw:Action="urn:createServiceDistributionResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createServiceDistributionApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createServiceDistributionSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileServiceDistributionList">
+            <wsdl:input
+                message="axis2:getMediaFileServiceDistributionListRequest" wsaw:Action="urn:getMediaFileServiceDistributionList"/>
+            <wsdl:output
+                message="axis2:getMediaFileServiceDistributionListResponse" wsaw:Action="urn:getMediaFileServiceDistributionListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getMediaFileServiceDistributionListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getMediaFileServiceDistributionListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAsset">
+            <wsdl:input message="axis2:deleteAssetRequest" wsaw:Action="urn:deleteAsset"/>
+            <wsdl:output message="axis2:deleteAssetResponse" wsaw:Action="urn:deleteAssetResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteAssetApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteAssetSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getContentStoreList">
+            <wsdl:input message="axis2:getContentStoreListRequest" wsaw:Action="urn:getContentStoreList"/>
+            <wsdl:output message="axis2:getContentStoreListResponse" wsaw:Action="urn:getContentStoreListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getContentStoreListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getContentStoreListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateFolder">
+            <wsdl:input message="axis2:updateFolderRequest" wsaw:Action="urn:updateFolder"/>
+            <wsdl:output message="axis2:updateFolderResponse" wsaw:Action="urn:updateFolderResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateFolderApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateFolderSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createMediaFile">
+            <wsdl:input message="axis2:createMediaFileRequest" wsaw:Action="urn:createMediaFile"/>
+            <wsdl:output message="axis2:createMediaFileResponse" wsaw:Action="urn:createMediaFileResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createMediaFileApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createMediaFileSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="exportAssetListTranslation">
+            <wsdl:input
+                message="axis2:exportAssetListTranslationRequest" wsaw:Action="urn:exportAssetListTranslation"/>
+            <wsdl:output
+                message="axis2:exportAssetListTranslationResponse" wsaw:Action="urn:exportAssetListTranslationResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:exportAssetListTranslationApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:exportAssetListTranslationSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileProfileList">
+            <wsdl:input message="axis2:getMediaFileProfileListRequest" wsaw:Action="urn:getMediaFileProfileList"/>
+            <wsdl:output message="axis2:getMediaFileProfileListResponse" wsaw:Action="urn:getMediaFileProfileListResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getMediaFileProfileListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="isAlive">
+            <wsdl:input message="axis2:isAliveRequest" wsaw:Action="urn:isAlive"/>
+            <wsdl:output message="axis2:isAliveResponse" wsaw:Action="urn:isAliveResponse"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:isAliveSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileHistoryList">
+            <wsdl:input message="axis2:getMediaFileHistoryListRequest" wsaw:Action="urn:getMediaFileHistoryList"/>
+            <wsdl:output message="axis2:getMediaFileHistoryListResponse" wsaw:Action="urn:getMediaFileHistoryListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getMediaFileHistoryListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getMediaFileHistoryListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getFolderList">
+            <wsdl:input message="axis2:getFolderListRequest" wsaw:Action="urn:getFolderList"/>
+            <wsdl:output message="axis2:getFolderListResponse" wsaw:Action="urn:getFolderListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getFolderListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getFolderListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateAsset">
+            <wsdl:input message="axis2:updateAssetRequest" wsaw:Action="urn:updateAsset"/>
+            <wsdl:output message="axis2:updateAssetResponse" wsaw:Action="urn:updateAssetResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateAssetApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateAssetSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchAssets">
+            <wsdl:input message="axis2:searchAssetsRequest" wsaw:Action="urn:searchAssets"/>
+            <wsdl:output message="axis2:searchAssetsResponse" wsaw:Action="urn:searchAssetsResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:searchAssetsApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:searchAssetsSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAsset">
+            <wsdl:input message="axis2:getAssetRequest" wsaw:Action="urn:getAsset"/>
+            <wsdl:output message="axis2:getAssetResponse" wsaw:Action="urn:getAssetResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getAssetApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getAssetSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="retryMediaFileProcessing">
+            <wsdl:input message="axis2:retryMediaFileProcessingRequest" wsaw:Action="urn:retryMediaFileProcessing"/>
+            <wsdl:output
+                message="axis2:retryMediaFileProcessingResponse" wsaw:Action="urn:retryMediaFileProcessingResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:retryMediaFileProcessingApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:retryMediaFileProcessingSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createAsset">
+            <wsdl:input message="axis2:createAssetRequest" wsaw:Action="urn:createAsset"/>
+            <wsdl:output message="axis2:createAssetResponse" wsaw:Action="urn:createAssetResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createAssetApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createAssetSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateServiceDistribution">
+            <wsdl:input message="axis2:updateServiceDistributionRequest" wsaw:Action="urn:updateServiceDistribution"/>
+            <wsdl:output
+                message="axis2:updateServiceDistributionResponse" wsaw:Action="urn:updateServiceDistributionResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateServiceDistributionApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateServiceDistributionSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAssetMediaFileList">
+            <wsdl:input message="axis2:getAssetMediaFileListRequest" wsaw:Action="urn:getAssetMediaFileList"/>
+            <wsdl:output message="axis2:getAssetMediaFileListResponse" wsaw:Action="urn:getAssetMediaFileListResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:getAssetMediaFileListApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:getAssetMediaFileListSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteServiceDistribution">
+            <wsdl:input message="axis2:deleteServiceDistributionRequest" wsaw:Action="urn:deleteServiceDistribution"/>
+            <wsdl:output
+                message="axis2:deleteServiceDistributionResponse" wsaw:Action="urn:deleteServiceDistributionResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteServiceDistributionApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteServiceDistributionSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFolder">
+            <wsdl:input message="axis2:deleteFolderRequest" wsaw:Action="urn:deleteFolder"/>
+            <wsdl:output message="axis2:deleteFolderResponse" wsaw:Action="urn:deleteFolderResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:deleteFolderApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:deleteFolderSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="createFolder">
+            <wsdl:input message="axis2:createFolderRequest" wsaw:Action="urn:createFolder"/>
+            <wsdl:output message="axis2:createFolderResponse" wsaw:Action="urn:createFolderResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:createFolderApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:createFolderSystemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateAssetDateValue">
+            <wsdl:input message="axis2:updateAssetDateValueRequest" wsaw:Action="urn:updateAssetDateValue"/>
+            <wsdl:output message="axis2:updateAssetDateValueResponse" wsaw:Action="urn:updateAssetDateValueResponse"/>
+            <wsdl:fault message="axis2:ApplicationException"
+                name="ApplicationException" wsaw:Action="urn:updateAssetDateValueApplicationException"/>
+            <wsdl:fault message="axis2:SystemException"
+                name="SystemException" wsaw:Action="urn:updateAssetDateValueSystemException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VodAPIWSSoap11Binding" type="axis2:VodAPIWSPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="deleteMediaFile">
+            <soap:operation soapAction="urn:deleteMediaFile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="moveAsset">
+            <soap:operation soapAction="urn:moveAsset" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createServiceDistribution">
+            <soap:operation soapAction="urn:createServiceDistribution" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateMediaFile">
+            <soap:operation soapAction="urn:updateMediaFile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileServiceDistributionList">
+            <soap:operation
+                soapAction="urn:getMediaFileServiceDistributionList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAsset">
+            <soap:operation soapAction="urn:deleteAsset" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getContentStoreList">
+            <soap:operation soapAction="urn:getContentStoreList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateFolder">
+            <soap:operation soapAction="urn:updateFolder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createMediaFile">
+            <soap:operation soapAction="urn:createMediaFile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="exportAssetListTranslation">
+            <soap:operation soapAction="urn:exportAssetListTranslation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileProfileList">
+            <soap:operation soapAction="urn:getMediaFileProfileList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="isAlive">
+            <soap:operation soapAction="urn:isAlive" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getMediaFileHistoryList">
+            <soap:operation soapAction="urn:getMediaFileHistoryList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getFolderList">
+            <soap:operation soapAction="urn:getFolderList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAsset">
+            <soap:operation soapAction="urn:updateAsset" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchAssets">
+            <soap:operation soapAction="urn:searchAssets" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAsset">
+            <soap:operation soapAction="urn:getAsset" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retryMediaFileProcessing">
+            <soap:operation soapAction="urn:retryMediaFileProcessing" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createAsset">
+            <soap:operation soapAction="urn:createAsset" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateServiceDistribution">
+            <soap:operation soapAction="urn:updateServiceDistribution" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAssetMediaFileList">
+            <soap:operation soapAction="urn:getAssetMediaFileList" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteServiceDistribution">
+            <soap:operation soapAction="urn:deleteServiceDistribution" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createFolder">
+            <soap:operation soapAction="urn:createFolder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="deleteFolder">
+            <soap:operation soapAction="urn:deleteFolder" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAssetDateValue">
+            <soap:operation soapAction="urn:updateAssetDateValue" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApplicationException">
+                <soap:fault name="ApplicationException" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="SystemException">
+                <soap:fault name="SystemException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VodAPIWS">
+        <wsdl:port binding="axis2:VodAPIWSSoap11Binding" name="VodAPIWSHttpSoap11Endpoint">
+            <soap:address location="http://10.250.10.206:8082/RightvAPIWS/services/VodAPIWS83"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
